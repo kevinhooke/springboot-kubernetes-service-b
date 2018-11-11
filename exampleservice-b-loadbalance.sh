@@ -1,0 +1,1 @@
+kubectl expose deployment exampleservice-b --type=LoadBalancer --name=exampleservice-b
