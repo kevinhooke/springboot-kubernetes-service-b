@@ -1,0 +1,35 @@
+variables:
+  CI_VERSION: "v1.0.0.${CI_PIPELINE_ID}"
+  
+stages:
+  - build
+  - package
+  - deploy
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+maven-build:
+  stage: build
+  script: "mvn package"
+  #define artifacts for next stage
+  artifacts:
+    paths:
+    - target/exampleservice-b-0.0.1-SNAPSHOT.jar
+    expire_in: 1 day
+    
+docker-build:
+  stage: package
+  script:
+  - docker build -t kevinhooke/examplespringboot-b:$CI_VERSION .
+  - docker push kevinhooke/examplespringboot-b:$CI_VERSION
+  #tag this version also as latest
+  - docker tag kevinhooke/examplespringboot-b:$CI_VERSION kevinhooke/examplespringboot-b:latest
+  - docker push kevinhooke/examplespringboot-b:latest
+
+k8s-deploy:
+  stage: deploy
+  script:
+#  - kubectl apply -f exampleservice-b-deployment.yml
+# deployment container=imagename:tag
+  - kubectl set image deployment/exampleservice-b exampleservice-b=kevinhooke/examplespringboot-b:$CI_VERSION
