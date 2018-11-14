@@ -2,10 +2,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: exampleservice-b
+  name: exampleservice-b-canary
+  labels:
+    app: exampleservice-b
 spec:
   containers:
   - name: examplespringboot-b
-    image: kevinhooke/examplespringboot-b:v1
+    image: kevinhooke/examplespringboot-b:v0.0.2
     ports:
     - containerPort: 8080
