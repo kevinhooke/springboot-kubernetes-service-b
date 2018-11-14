@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: exampleservice-b
-        image: kevinhooke/examplespringboot-b:v1
+        image: kevinhooke/examplespringboot-b:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
