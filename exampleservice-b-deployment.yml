@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: exampleservice-b-canary
   labels:
-    app: exampleservice-b-canary
+    app: exampleservice-b
 spec:
   replicas: 1
   selector:
