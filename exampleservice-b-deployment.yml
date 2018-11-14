@@ -5,7 +5,7 @@ metadata:
   labels:
     app: exampleservice-b
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: exampleservice-b
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: exampleservice-b
-        image: kevinhooke/examplespringboot-b:v1
+        image: kevinhooke/examplespringboot-b:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
