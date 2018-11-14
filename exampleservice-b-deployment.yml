@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exampleservice-b
+  name: exampleservice-b-canary
   labels:
-    app: exampleservice-b
+    app: exampleservice-b-canary
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: exampleservice-b
+      app: exampleservice-b-canary
   template:
     metadata:
       labels:
-        app: exampleservice-b
+        app: exampleservice-b-canary
     spec:
       containers:
       - name: exampleservice-b
-        image: kevinhooke/examplespringboot-b:latest
+        image: kevinhooke/examplespringboot-b:v0.0.2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

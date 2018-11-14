@@ -1,5 +1,5 @@
 variables:
-  CI_VERSION: "v2.0.0.${CI_PIPELINE_ID}"
+  CI_VERSION: "v0.0.2"
   
 stages:
   - build
@@ -15,7 +15,7 @@ maven-build:
   #define artifacts for next stage
   artifacts:
     paths:
-    - target/exampleservice-b-2.0.0-SNAPSHOT.jar
+    - target/exampleservice-b-0.0.2-SNAPSHOT.jar
     expire_in: 1 day
     
 docker-build:
@@ -24,12 +24,12 @@ docker-build:
   - docker build -t kevinhooke/examplespringboot-b:$CI_VERSION .
   - docker push kevinhooke/examplespringboot-b:$CI_VERSION
   #tag this version also as latest
-  - docker tag kevinhooke/examplespringboot-b:$CI_VERSION kevinhooke/examplespringboot-b:latest
-  - docker push kevinhooke/examplespringboot-b:latest
+#  - docker tag kevinhooke/examplespringboot-b:$CI_VERSION kevinhooke/examplespringboot-b:latest
+#  - docker push kevinhooke/examplespringboot-b:latest
 
 k8s-deploy:
   stage: deploy
   script:
-    - kubectl apply -f exampleservice-b-pod.yml
+    - kubectl apply -f exampleservice-b-deployment.yml
 # deployment container=imagename:tag
 #  - kubectl set image deployment/exampleservice-a exampleservice-a=kevinhooke/examplespringboot-a:$CI_VERSION
