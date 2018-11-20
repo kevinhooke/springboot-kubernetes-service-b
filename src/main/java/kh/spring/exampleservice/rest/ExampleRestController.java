@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kh.spring.exampleservice.domain.HelloResult;
 
 @RestController
-@RequestMapping("/example-b")
 public class ExampleRestController {
 
 	@GetMapping("/hello")
