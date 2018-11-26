@@ -1,0 +1,11 @@
+# create pod with:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exampleservice-b-v2
+spec:
+  containers:
+  - name: examplespringboot-b-v2
+    image: kevinhooke/examplespringboot-b:v2-latest
+    ports:
+    - containerPort: 8080
