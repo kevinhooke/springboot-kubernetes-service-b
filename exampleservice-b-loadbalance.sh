@@ -1,1 +1,1 @@
-kubectl expose deployment exampleservice-b --type=LoadBalancer --name=exampleservice-b
+kubectl expose deployment exampleservice-b-v2 --type=LoadBalancer --name=exampleservice-b-v2
