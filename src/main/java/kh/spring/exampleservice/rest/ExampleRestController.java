@@ -15,7 +15,7 @@ public class ExampleRestController {
 	@GetMapping("/hello")
 	public HelloResult getHello() throws UnknownHostException {
 		HelloResult result = new HelloResult();
-		result.setMessage("hello live demo on the fly from exampleservice-b v1 on " + InetAddress.getLocalHost() );
+		result.setMessage("hello deployed to the cloud from exampleservice-b v1 on " + InetAddress.getLocalHost() );
 		return result;
 	}
 	
